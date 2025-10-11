@@ -3065,7 +3065,11 @@ wFossilMon:: ; d710
 ; mon that will result from the item
 	ds 1
 
-	ds 2
+wPokedexPlace1:: 
+	ds 1
+
+wPokedexPlace2::
+	ds 1
 
 wEnemyMonOrTrainerClass:: ; d713
 ; trainer classes start at 200

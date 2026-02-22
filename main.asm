@@ -86,8 +86,6 @@ INCLUDE "engine/menu/text_box.asm"
 
 INCLUDE "engine/battle/moveEffects/drain_hp_effect.asm"
 
-INCLUDE "engine/menu/players_pc.asm"
-
 INCLUDE "engine/remove_pokemon.asm"
 
 INCLUDE "engine/display_pokedex.asm"
@@ -2648,6 +2646,8 @@ SECTION "bank5F",ROMX,BANK[$5F]
 BaseStats: INCLUDE "data/base_stats.asm"
 INCLUDE "engine/evos_moves.asm"
 ; NUEVO MOVIDO PARA QUE HAYA MAS ESPACIO DE MOVEPOOL SIN QUE DE MAS FALLOS
+INCLUDE "engine/menu/players_pc.asm"
+INCLUDE "engine/menu/item_display_count.asm"
 
 SECTION "bank6F",ROMX,BANK[$6F]
 ;NUEVO MAPA POLICIA

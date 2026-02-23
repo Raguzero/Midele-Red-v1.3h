@@ -138,7 +138,7 @@ charmap "り", $D8
 charmap "る", $D9
 charmap "れ", $DA
 charmap "ろ", $DB
-charmap "わ", $DC
+charmap "<LVL>",  $DC
 charmap "を", $DD
 charmap "ん", $DE
 charmap "っ", $DF

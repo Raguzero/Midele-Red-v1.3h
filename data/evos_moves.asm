@@ -1419,7 +1419,6 @@ Mon063_EvosMoves:
 Mon064_EvosMoves:
 ;KADABRA
 ;Evolutions
-    db EV_TRADE,1,ALAKAZAM
 	db EV_LEVEL,55,ALAKAZAM
 	db 0
 ;Learnset
@@ -1474,7 +1473,6 @@ Mon066_EvosMoves:
 Mon067_EvosMoves:
 ;MACHOKE
 ;Evolutions
-    db EV_TRADE,1,MACHAMP
 	db EV_LEVEL,40,MACHAMP
 	db 0
 ;Learnset
@@ -1619,7 +1617,6 @@ Mon074_EvosMoves:
 Mon075_EvosMoves:
 ;GRAVELER
 ;Evolutions
-    db EV_TRADE,1,GOLEM
 	db EV_LEVEL,40,GOLEM
 	db 0
 ;Learnset
@@ -1964,7 +1961,6 @@ Mon092_EvosMoves:
 Mon093_EvosMoves:
 ;HAUNTER
 ;Evolutions
-    db EV_TRADE,1,GENGAR
 	db EV_LEVEL,50,GENGAR
 	db 0
 ;Learnset
@@ -2684,9 +2680,9 @@ Mon133_EvosMoves:
 	db EV_ITEM,FIRE_STONE,1,FLAREON
 	db EV_ITEM,THUNDER_STONE,1,JOLTEON
 	db EV_ITEM,WATER_STONE,1,VAPOREON
+	db EV_ITEM,SUN_STONE,30,ESPEON
 	db EV_ITEM,MOON_STONE,30,UMBREON
 	db EV_ITEM,LEAF_STONE,1,LEAFEON
-	db EV_ITEM,SUN_STONE,30,ESPEON
 	db EV_ITEM,ICE_STONE,1,GLACEON
 	db 0
 Mon133_EvosEnd:

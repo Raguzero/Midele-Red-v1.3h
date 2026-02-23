@@ -530,6 +530,124 @@ ShowPokedexDataInternal:
 	coord hl, 15, 16
 	lb bc, 2, 3
 	call PrintNumber
+; print evolution data
+	ld hl, PromptText
+	call TextCommandProcessor
+	coord hl, 1, 10
+	lb bc, 7, 18
+	call ClearScreenArea
+	coord hl, 5, 9
+	ld de, EvolutionsText
+	call PlaceString
+; load pokemon data
+	ld a, [wd11e]
+	ld [wWhichPokemon], a
+	ld [wcf91], a
+	farcall PrepareEvolutionData
+	ld de, wPokedexDataBuffer
+	ld a, 1
+	ldh [hEvoCounter], a
+.loopEvolutionData
+	ld a, [wMoveListCounter] 
+	ld c, a ; loop counter
+	cp 0
+	jp z, .clearLetterPrintingFlags
+	ld a, [de]
+	cp EV_LEVEL
+	jr z, .printLevelText
+	cp EV_ITEM
+	jr z, .printItemText
+.printLevelText
+	push de
+	push bc
+	ld de, EvolveLevelText
+	coord hl, 1, 9
+	ldh a, [hEvoCounter]
+	ld bc, SCREEN_WIDTH ; * 3
+	call AddNTimes
+	call PlaceString
+	pop bc
+	pop de
+	jr .itemIdByte
+.printItemText
+	push de
+	push bc
+	ld de, EvolveItemText
+	coord hl, 1, 11
+	ldh a, [hEvoCounter]
+	ld bc, SCREEN_WIDTH ; * 3
+	call AddNTimes
+	call PlaceString
+	pop bc
+	pop de
+	jr .itemIdByte
+.itemIdByte
+	inc de
+	ld a, [de]
+	cp $FF
+	jr z, .levelByte
+	push de
+	push bc
+	ld [wd11e], a 
+	call GetItemName
+	coord hl, 1, 9
+	ldh a, [hEvoCounter]
+	ld bc, SCREEN_WIDTH ; * 3
+	call AddNTimes
+	call PlaceString
+	pop bc
+	pop de
+	ld a, [wWhichPokemon]
+	ld [wd11e], a
+	jr .levelByte
+.clearBullet
+	push de
+	push bc
+	coord hl, 1, 11
+	ldh a, [hEvoCounter]
+	ld bc, SCREEN_WIDTH ; * 3
+	call AddNTimes
+	ld [hl], " "
+	pop bc
+	pop de
+.levelByte
+	inc de
+	ld a, [de]
+	cp 1
+	jr z, .targetByte
+
+	push de
+	push bc
+	coord hl, 17, 9
+	ldh a, [hEvoCounter]
+	ld bc, SCREEN_WIDTH ; * 3
+	call AddNTimes
+	lb bc, LEFT_ALIGN |  1, 3
+	call PrintNumber
+	pop bc
+	pop de
+
+	push de
+	push bc
+	ld de, EvolveLVLText
+	coord hl, 14, 9
+	ldh a, [hEvoCounter]
+	ld bc, SCREEN_WIDTH ; * 3
+	call AddNTimes
+	call PlaceString
+	pop bc
+	pop de
+
+	jr .targetByte
+.targetByte
+	inc de
+	dec c
+	ld a, c
+	ld [wMoveListCounter], a
+	ld hl, hEvoCounter
+	inc [hl]
+	inc de
+	jp .loopEvolutionData
 .clearLetterPrintingFlags
 ;;;;;;;;;;
 	xor a
@@ -557,6 +675,16 @@ ShowPokedexDataInternal:
 	ld a, $77 ; max volume
 	ld [rNR50], a
 	ret
+	
+EvolveLevelText:
+	db "LEVEL-UP TO@"
+
+EvolveItemText:
+	db "@"
+
+EvolveLVLText:
+	db "LV<LVL>@"
+
 
 DrawDexEntryOnScreen:	
 	coord hl, 0, 0
@@ -1197,3 +1325,5 @@ SpcText:
 TotalText:
 	db "TOTAL@"
 
+EvolutionsText:
+	db "EVOLUTIONS@"

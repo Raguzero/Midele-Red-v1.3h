@@ -272,6 +272,7 @@ hMovingBGTilesCounter1 EQU $FFD8
 H_CURRENTSPRITEOFFSET EQU $FFDA ; multiple of $10
 
 hItemCounter EQU $FFDB
+hEvoCounter EQU $FFDB
 
 hGymGateIndex EQU $FFDB
 

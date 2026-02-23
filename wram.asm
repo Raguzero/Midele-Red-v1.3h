@@ -615,6 +615,7 @@ wShinyMonFlag:: ; cc97
 
 wSwitchPartyMonTempBuffer:: ; cc97
 ; temporary buffer when swapping party mon data
+wPokedexDataBuffer::
 ; NUEVO MOVEREARNER
 wRelearnableMoves::
 ; List of move ids that can be re-learend (Move Relearner)
@@ -627,7 +628,7 @@ wDeletableMoves::
 ; First byte is the number of moves in this list.
 ; List is terminated with $ff
 ; NUEVO MOVE RELEARNER Y DELETER
-	ds 10
+	ds 9
 
 wNumStepsToTake:: ; cca1
 ; used in Pallet Town scripted movement
@@ -3033,8 +3034,11 @@ wExtraFlags::
 ; bit 1 = Set means Exp All is on
 	ds 1
 
+wWhichItem::
+	ds 1
+
 ; unused
-    ds 54
+    ds 53
 
 wObtainedHiddenItemsFlags::
 	ds 14

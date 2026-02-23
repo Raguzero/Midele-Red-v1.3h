@@ -153,3 +153,4 @@ PredefPointers::
 	add_predef OaksAideScript
 	add_predef StatusScreen3 ; NUEVO TERCERA VENTANA DE STATS
 	add_predef TryFieldMove ; NUEVO PARA FIELD MOVES
+	add_predef PrintBufferedMoveType

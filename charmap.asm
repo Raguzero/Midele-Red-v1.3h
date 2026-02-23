@@ -17,6 +17,7 @@ charmap "バ", $19
 charmap "ビ", $1A
 charmap "ブ", $1B
 charmap "ボ", $1C
+charmap "<LF>", $1F
 charmap "が", $26
 charmap "ぎ", $27
 charmap "ぐ", $28
@@ -233,6 +234,7 @@ charmap "'s", $BD
 charmap "'t", $BE
 charmap "'v", $BF
 
+charmap "&", $DE
 charmap "⁂", $DF ; NUEVO PARA SHINY
 
 charmap "'", $E0
@@ -243,7 +245,7 @@ charmap "'m", $E5
 charmap "?", $E6
 charmap "!", $E7
 charmap ".", $E8
-
+charmap "%", $EA
 charmap "▷", $EC
 charmap "▶", $ED
 charmap "▲", $ED

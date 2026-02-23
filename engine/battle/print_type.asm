@@ -30,6 +30,12 @@ EraseType2Text:
 	add hl, bc
 	ld bc, $6
 	jp FillMemory
+	
+PrintBufferedMoveType:
+	call GetPredefRegisters
+	push hl
+	ld a, [wBuffer + 3] ; move type
+	jr PrintType_
 
 PrintMoveType:
 	call GetPredefRegisters

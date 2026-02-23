@@ -86,7 +86,6 @@ AbandonLearning:
 	jp nz, DontAbandonLearning
 	ld hl, DidNotLearnText
 	call PrintText
-	call LoadScreenTilesFromBuffer1
 	ld b, 0
 	ret
 
@@ -240,8 +239,18 @@ ShowMoveInfo:
 	coord hl, 15, 2
 	lb bc, 1, 3
 	call PrintNumber
+	coord hl, 1, 4
 	farcall PrintMoveDescription
 	ret
+	
+; [info] Luna fixed this for me, I do not know why it works	
+ConvertPercentagesBattle::
+	ld a, [wPlayerMoveAccuracy]
+	call ConvertPercentages
+	ld [wBuffer], a
+	ld [wBuffer + 6], a
+	ret
+	
 ; This converts values out of 256 into a value
 ; out of 100. It achieves this by multiplying
 ; the value by 100 and dividing it by 256.

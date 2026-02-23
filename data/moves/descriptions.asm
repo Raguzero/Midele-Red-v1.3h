@@ -465,8 +465,8 @@ LeechSeedDescription:
 	db   "Steals HP from the"
 	feed "foe on every turn.@"
 GrowthDescription:
-	db   "Raises SPECIAL and"
-	feed "ATTACK rating.@"
+	db   "Raises the user's"
+	feed "SPECIAL.@"
 RazorLeafDescription:
 	db   "Has a high criti-"
 	feed "cal hit ratio.@"
@@ -486,7 +486,7 @@ PetalDanceDescription:
 	db   "Works 2-3 turns"
 	feed "and confuses user.@"
 StringShotDescription:
-	db   "A move that lowers"
+	db   "Sharply reduces"
 	feed "the foe's SPEED.@"
 DragonRageDescription:
 	db   "Always inflicts"

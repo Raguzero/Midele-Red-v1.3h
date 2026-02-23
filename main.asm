@@ -2730,4 +2730,5 @@ MicoloMap3Blocks: INCBIN "maps/micolomap3.blk"
 INCLUDE "scripts/micolomap2.asm"
 INCLUDE "scripts/micolomap3.asm"
 INCLUDE "engine/move_descriptions.asm"
+INCLUDE "engine/move_screen.asm"
 ; NUEVO MAPA LAB MICOLO

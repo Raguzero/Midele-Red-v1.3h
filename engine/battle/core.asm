@@ -1362,6 +1362,7 @@ HandlePlayerBlackOut:
 	;ret z            ; starter battle in oak's lab: don't black out
 ;.notSony1Battle
 	; NUEVO PARA MENSAJE VICTORIA EN ENTRENADORES
+	ResetEvent EVENTO_FORZAR_FEMALE_GENDER
 	ld b, SET_PAL_BATTLE_BLACK
 	call RunPaletteCommand
 	ld hl, PlayerBlackedOutText2
@@ -2125,7 +2126,10 @@ DrawEnemyHUDAndHPBar:
 	coord hl, 1, 0
 	call CenterMonName
 	call PlaceString
+    call IsGhostBattle
+    jr z, .skipGender
 	call PrintEnemyMonGender ; NUEVO PARA GENEROS
+.skipGender
 	call PrintEnemyMonShiny ; NUEVO PARA SHINY
 	;NUEVO MODIFICADO PARA MOSTRAR NIVEL Y ESTADO ALTERADO
 	;coord hl, 6, 1 ; antes era coord hl, 4, 1  ESTO ES PARA BATTLE EXP
@@ -2632,7 +2636,11 @@ PartyMenuOrRockOrRun:
 	ld [wd0b5], a
 	call GetMonHeader
 	ld de, vFrontPic
-	call LoadMonFrontSprite
+	call IsGhostBattle
+	push af
+	call nz, LoadMonFrontSprite
+	pop af
+	call z, LoadGhostPic
 	jr .enemyMonPicReloaded
 .doEnemyMonAnimation
 ; NUEVO PARA CORREGIR BUG DE FALLOS GRAFICOS AL USAR SUBS+MINIMIZE Y VER EL ESTADO DE UN POKEMON
@@ -6949,6 +6957,10 @@ LoadEnemyMonData:
     ld b, $ff
     jr nz, .storeDVs
 ; NUEVO REGALO SHINY
+    CheckEventHL EVENTO_FORZAR_FEMALE_GENDER
+    ld a, $0f
+    ld b, $ff
+    jr nz, .storeDVs
 	call BattleRandom
 	ld b, a
 	call BattleRandom
@@ -7141,12 +7153,15 @@ LoadEnemyMonData:
 	ld a, [wEnemyMonSpecies2]
 	ld [wd11e], a
 	predef IndexToPokedex
+	call IsGhostBattle
+	jr z, .noMarkSeen
 	ld a, [wd11e]
 	dec a
 	ld c, a
 	ld b, FLAG_SET
 	ld hl, wPokedexSeen
 	predef FlagActionPredef ; mark this mon as seen in the pokedex
+.noMarkSeen
 	ld hl, wEnemyMonLevel
 	ld de, wEnemyMonUnmodifiedLevel
 	ld bc, 1 + NUM_STATS * 2
@@ -7718,17 +7733,7 @@ InitBattleCommon:
 	ld [wIsInBattle], a
 	jp _InitBattleCommon
 
-InitWildBattle:
-	ld a, $1
-	ld [wIsInBattle], a
-	call LoadEnemyMonData
-	call DoBattleTransitionAndInitBattleVariables
-	ld a, [wCurOpponent]
-	cp MAROWAK
-	jr z, .isGhost
-	call IsGhostBattle
-	jr nz, .isNoGhost
-.isGhost
+LoadGhostPic:
 	ld hl, wMonHSpriteDim
 	ld a, $66
 	ld [hli], a   ; write sprite dimensions
@@ -7756,6 +7761,20 @@ InitWildBattle:
 	call LoadMonFrontSprite ; load ghost sprite
 	pop af
 	ld [wcf91], a
+	ret
+
+InitWildBattle:
+	ld a, $1
+	ld [wIsInBattle], a
+	call LoadEnemyMonData
+	call DoBattleTransitionAndInitBattleVariables
+	ld a, [wCurOpponent]
+	cp MAROWAK
+	jr z, .isGhost
+	call IsGhostBattle
+	jr nz, .isNoGhost
+.isGhost
+	call LoadGhostPic
 	jr .spriteLoaded
 .isNoGhost
 	ld de, vFrontPic

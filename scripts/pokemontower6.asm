@@ -32,6 +32,7 @@ PokemonTower6Script0:
 	ld a, $6
 	ld [hSpriteIndexOrTextID], a
 	call DisplayTextID
+	SetEvent EVENTO_FORZAR_FEMALE_GENDER
 	ld a, MAROWAK
 	ld [wCurOpponent], a
 	ld a, 50
@@ -60,6 +61,7 @@ PokemonTower6Script4:
 	and a
 	jr nz, .asm_60b82
 	SetEvent EVENT_BEAT_GHOST_MAROWAK
+	ResetEvent EVENTO_FORZAR_FEMALE_GENDER
 	ld a, $7
 	ld [hSpriteIndexOrTextID], a
 	call DisplayTextID
@@ -70,6 +72,7 @@ PokemonTower6Script4:
 	ld [wCurMapScript], a
 	ret
 .asm_60b82
+	ResetEvent EVENTO_FORZAR_FEMALE_GENDER
 	ld a, $1
 	ld [wSimulatedJoypadStatesIndex], a
 	ld a, $10

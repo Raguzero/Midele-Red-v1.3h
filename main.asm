@@ -553,6 +553,8 @@ TrainerInfoTextBoxTileGraphicsEnd:
 BlankLeaderNames:                INCBIN "gfx/blank_leader_names.2bpp"
 CircleTile:                      INCBIN "gfx/circle_tile.2bpp"
 BadgeNumbersTileGraphics:        INCBIN "gfx/badge_numbers.2bpp"
+FPlayerCharacterTitleGraphics:  INCBIN "gfx/fplayer_title.2bpp"
+FPlayerCharacterTitleGraphicsEnd:
 
 INCLUDE "engine/items/tmhm.asm"
 INCLUDE "engine/battle/scale_sprites.asm"

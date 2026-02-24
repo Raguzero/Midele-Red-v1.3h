@@ -36,7 +36,16 @@ DisplayDiploma:
 	coord hl, 10, 4
 	ld de, wPlayerName
 	call PlaceString
+	ld a, [wPlayerGender]
+	and a		; are you playing as Red
+	jr z, .red	; if yes, Red appears on the diploma
+	jr nz, .green	; if no, Green replaces him
+.green
+	callba DrawFPlayerCharacter
+	jr .skip
+.red
 	callba DrawPlayerCharacter
+.skip
 
 ; Move the player 33 pixels right and set the priority bit so he appears
 ; behind the background layer.

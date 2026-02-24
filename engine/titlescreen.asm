@@ -90,7 +90,15 @@ DisplayTitleScreen:
 	dec b
 	jr nz, .pokemonLogoLastTileRowLoop
 
+	call Random
+	ldh a, [hRandomAdd]
+	cp 129
+	jr c, .male
+	call DrawFPlayerCharacter
+	jr .playerskip
+.male
 	call DrawPlayerCharacter
+.playerskip
 
 ; put a pokeball in the player's hand
 	ld hl, wOAMBuffer + $28
@@ -359,6 +367,43 @@ DrawPlayerCharacter:
 	ld [hli], a ; tile
 	inc a
 	ld [wPlayerCharacterOAMTile], a
+	inc hl
+	dec c
+	jr nz, .innerLoop
+	pop de
+	ld a, 8
+	add d
+	ld d, a
+	dec b
+	jr nz, .loop
+	ret
+
+DrawFPlayerCharacter:
+	ld hl, FPlayerCharacterTitleGraphics
+	ld de, vSprites
+	ld bc, FPlayerCharacterTitleGraphicsEnd - FPlayerCharacterTitleGraphics
+	ld a, BANK(FPlayerCharacterTitleGraphics)
+	call FarCopyData2
+	call ClearSprites
+	xor a
+	ld [wFPlayerCharacterOAMTile], a
+	ld hl, wOAMBuffer
+	ld de, $605a
+	ld b, 7
+.loop
+	push de
+	ld c, 5
+.innerLoop
+	ld a, d
+	ld [hli], a ; Y
+	ld a, e
+	ld [hli], a ; X
+	add 8
+	ld e, a
+	ld a, [wFPlayerCharacterOAMTile]
+	ld [hli], a ; tile
+	inc a
+	ld [wFPlayerCharacterOAMTile], a
 	inc hl
 	dec c
 	jr nz, .innerLoop

@@ -933,6 +933,7 @@ wPriceTemp:: ; cd3d
 wTitleMonSpecies:: ; cd3d
 
 wPlayerCharacterOAMTile:: ; cd3d
+wFPlayerCharacterOAMTile::
 
 wMoveDownSmallStarsOAMCount:: ; cd3d
 ; the number of small stars OAM entries to move down

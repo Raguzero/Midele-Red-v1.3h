@@ -15,7 +15,7 @@ dw MewtwoPicBack
 db CONFUSION
 db DISABLE
 db SWIFT
-db PSYCHIC_M
+db PSYBEAM
 db 5 ; growth rate
 ; learnset
 	tmlearn 1,5,6,8

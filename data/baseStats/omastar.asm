@@ -14,7 +14,7 @@ dw OmastarPicBack
 ; attacks known at lvl 0
 db WATER_GUN
 db WITHDRAW
-db HORN_ATTACK
+db PIN_MISSILE
 db 0
 db 0 ; growth rate
 ; learnset

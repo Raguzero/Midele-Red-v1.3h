@@ -22,7 +22,7 @@ db 0 ; growth rate
 	tmlearn 15
 	tmlearn 20
 	tmlearn 29,31,32
-	tmlearn 34
-	tmlearn 42,44
+	tmlearn 34,36
+	tmlearn 42,44,45
 	tmlearn 50,55
 db BANK(CofagrigusPicFront)

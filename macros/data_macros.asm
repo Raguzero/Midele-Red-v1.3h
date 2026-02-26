@@ -232,7 +232,11 @@ ENDM
 
 tmlearn: MACRO
 x = 0
-	REPT _NARG
+first = \1
+    REPT _NARG
+IF ((\1 - 1) >> 3) != ((first + -1) >> 3)
+    FAIL "hay que meter estos valores en grupos de ocho"
+ENDC
 IF \1 != 0
 x = x | (1 << ((\1 - 1) % 8))
 ENDC

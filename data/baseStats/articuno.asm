@@ -13,7 +13,7 @@ dw ArticunoPicFront
 dw ArticunoPicBack
 ; attacks known at lvl 0
 db PECK
-db ICE_BEAM
+db ICY_WIND
 db 0
 db 0
 db 5 ; growth rate

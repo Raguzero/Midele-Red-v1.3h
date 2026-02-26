@@ -23,6 +23,6 @@ db 5 ; growth rate
 	tmlearn 20,23
 	tmlearn 26,31,32
 	tmlearn 33,34,38
-	tmlearn 44,45,48,49
-	tmlearn 50,52,53,54
+	tmlearn 44,45,48
+	tmlearn 49,50,52,53,54
 db BANK(HydreigonPicFront)

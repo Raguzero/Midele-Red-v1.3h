@@ -14,7 +14,7 @@ AgathaShowOrHideExitBlock:
 	bit 5, [hl]
 	res 5, [hl]
 	ret z
-	CheckEvent EVENT_BEAT_AGATHAS_ROOM_TRAINER_0
+	CheckEitherEventSet EVENT_BEAT_AGATHAS_ROOM_TRAINER_0, EVENT_BEAT_AGATHAS_ROOM_TRAINER_1
 	jr z, .blockExitToNextRoom
 	ld a, $e
 	jp .setExitBlock
@@ -129,12 +129,31 @@ AgathaTrainerHeader0:
 	dw AgathaEndBattleText ; TextEndBattle
 	dw AgathaEndBattleText ; TextEndBattle
 
+AgathaTrainerHeader1:
+	dbEventFlagBit EVENT_BEAT_AGATHAS_ROOM_TRAINER_1
+	db ($0 << 4) ; trainer's view range
+	dwEventFlagAddress EVENT_BEAT_AGATHAS_ROOM_TRAINER_1
+	dw AgathaRematchText ; TextBeforeBattle
+	dw AgathaRematchAfterBattleText ; TextAfterBattle
+	dw AgathaRematchEndBattleText ; TextEndBattle
+	dw AgathaRematchEndBattleText ; TextEndBattle
+
 	db $ff
 
 AgathaText1:
 	TX_ASM
 	ld hl, AgathaTrainerHeader0
+	CheckEvent EVENT_POST_GAME
+	jr z, .skip
+	ld hl, AgathaTrainerHeader1
+.skip
 	call TalkToTrainer
+	CheckEvent EVENT_POST_GAME
+	jr z, .skip2
+	ld a, [wTrainerNo]
+	inc a
+	ld [wTrainerNo], a
+.skip2
 	jp TextScriptEnd
 
 AgathaBeforeBattleText:
@@ -151,4 +170,16 @@ AgathaAfterBattleText:
 
 AgathaDontRunAwayText:
 	TX_FAR _AgathaDontRunAwayText
+	db "@"
+	
+AgathaRematchText:
+	TX_FAR _AgathaRematchText
+	db "@"
+
+AgathaRematchEndBattleText:
+	TX_FAR _AgathaRematchEndBattleText
+	db "@"
+
+AgathaRematchAfterBattleText:
+	TX_FAR _AgathaRematchAfterBattleText
 	db "@"

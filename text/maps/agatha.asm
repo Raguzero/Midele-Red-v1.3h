@@ -42,3 +42,40 @@ _AgathaDontRunAwayText::
 	text "Someone's voice:"
 	line "Don't run away!"
 	done
+
+_AgathaRematchText::
+	text "So you've come!"
+	
+	para "It's not in my"
+	line "character to"
+	cont "lose over and"
+	cont "over."
+	
+	para "Give this battle"
+	line "everything you"
+	cont "have!"
+	done
+	
+_AgathaRematchEndBattleText::
+	text "Not bad!"
+	prompt
+
+_AgathaRematchAfterBattleText::
+	text "Small wonder that"
+	line "old-timer's taken"
+	cont "such an interest"
+	cont "in you."
+	
+	para "...OAK and I used"
+	line "to be good rivals"
+	cont "too, you know."
+	
+	para "Just like you and"
+	line "<RIVAL>."
+	
+	para "What are you"
+	line "waiting for?"
+	
+	para "Off to the next"
+	line "room!"
+	done

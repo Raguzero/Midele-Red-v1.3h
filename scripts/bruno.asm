@@ -14,7 +14,7 @@ BrunoShowOrHideExitBlock:
 	bit 5, [hl]
 	res 5, [hl]
 	ret z
-	CheckEvent EVENT_BEAT_BRUNOS_ROOM_TRAINER_0
+	CheckEitherEventSet EVENT_BEAT_BRUNOS_ROOM_TRAINER_0, EVENT_BEAT_BRUNOS_ROOM_TRAINER_1
 	jr z, .blockExitToNextRoom
 	ld a, $5
 	jp .setExitBlock
@@ -125,13 +125,32 @@ BrunoTrainerHeader0:
 	dw BrunoAfterBattleText ; TextAfterBattle
 	dw BrunoEndBattleText ; TextEndBattle
 	dw BrunoEndBattleText ; TextEndBattle
+	
+BrunoTrainerHeader1:
+	dbEventFlagBit EVENT_BEAT_BRUNOS_ROOM_TRAINER_1
+	db ($0 << 4) ; trainer's view range
+	dwEventFlagAddress EVENT_BEAT_BRUNOS_ROOM_TRAINER_1
+	dw BrunoRematchText ; TextBeforeBattle
+	dw BrunoRematchAfterBattleText ; TextAfterBattle
+	dw BrunoRematchEndBattleText ; TextEndBattle
+	dw BrunoRematchEndBattleText ; TextEndBattle
 
 	db $ff
 
 BrunoText1:
 	TX_ASM
 	ld hl, BrunoTrainerHeader0
+	CheckEvent EVENT_POST_GAME
+	jr z, .skip
+	ld hl, BrunoTrainerHeader1
+.skip
 	call TalkToTrainer
+	CheckEvent EVENT_POST_GAME
+	jr z, .skip2
+	ld a, [wTrainerNo]
+	inc a
+	ld [wTrainerNo], a
+.skip2
 	jp TextScriptEnd
 
 BrunoBeforeBattleText:
@@ -148,4 +167,16 @@ BrunoAfterBattleText:
 
 BrunoDontRunAwayText:
 	TX_FAR _BrunoDontRunAwayText
+	db "@"
+
+BrunoRematchText:
+	TX_FAR _BrunoRematchText
+	db "@"
+
+BrunoRematchEndBattleText:
+	TX_FAR _BrunoRematchEndBattleText
+	db "@"
+
+BrunoRematchAfterBattleText:
+	TX_FAR _BrunoRematchAfterBattleText
 	db "@"

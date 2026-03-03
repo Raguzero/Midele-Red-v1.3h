@@ -138,13 +138,32 @@ LanceTrainerHeader0:
 	dw LanceAfterBattleText ; TextAfterBattle
 	dw LanceEndBattleText ; TextEndBattle
 	dw LanceEndBattleText ; TextEndBattle
+	
+LanceTrainerHeader1:
+	dbEventFlagBit EVENT_BEAT_LANCES_ROOM_TRAINER_1
+	db ($0 << 4) ; trainer's view range
+	dwEventFlagAddress EVENT_BEAT_LANCES_ROOM_TRAINER_1
+	dw LanceRematchText ; TextBeforeBattle
+	dw LanceRematchAfterBattleText ; TextAfterBattle
+	dw LanceRematchEndBattleText ; TextEndBattle
+	dw LanceRematchEndBattleText ; TextEndBattle
 
 	db $ff
 
 LanceText1:
 	TX_ASM
 	ld hl, LanceTrainerHeader0
+	CheckEvent EVENT_POST_GAME
+	jr z, .skip
+	ld hl, LanceTrainerHeader1
+.skip
 	call TalkToTrainer
+	CheckEvent EVENT_POST_GAME
+	jr z, .skip2
+	ld a, [wTrainerNo]
+	inc a
+	ld [wTrainerNo], a
+.skip2
 	jp TextScriptEnd
 
 LanceBeforeBattleText:
@@ -157,6 +176,20 @@ LanceEndBattleText:
 
 LanceAfterBattleText:
 	TX_FAR _LanceAfterBattleText
+	TX_ASM
+	SetEvent EVENT_BEAT_LANCE
+	jp TextScriptEnd
+	
+LanceRematchText:
+	TX_FAR _LanceRematchText
+	db "@"
+
+LanceRematchEndBattleText:
+	TX_FAR _LanceRematchEndBattleText
+	db "@"
+
+LanceRematchAfterBattleText:
+	TX_FAR _LanceRematchAfterBattleText
 	TX_ASM
 	SetEvent EVENT_BEAT_LANCE
 	jp TextScriptEnd

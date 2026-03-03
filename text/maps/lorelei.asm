@@ -35,6 +35,37 @@ _LoreleiAfterBattleText::
 	line "taste of #MON"
 	cont "LEAGUE power!"
 	done
+	
+_LoreleiRematchText::
+	text "Welcome to the"
+	line "#MON LEAGUE!"
+	
+	para "Hey, fantastic"
+	line "timing! I was"
+	cont "just thinking"
+	cont "how I'd like to"
+	cont "battle you."
+	
+	para "I hope you're"
+	line "ready!"
+	done
+	
+_LoreleiRematchEndBattleText::
+	text "Argh!"
+	line "How?!"
+	prompt
+
+_LoreleiRematchAfterBattleText::
+	text "I may have lost"
+	line "to you, but I'll"
+	cont "never give up on"
+	cont "ice #MON!"
+	
+	para "You should aim to"
+	line "win using #MON"
+	cont "you like best,"
+	cont "too!"
+	done
 
 _LoreleiDontRunAwayText::
 	text "Someone's voice:"

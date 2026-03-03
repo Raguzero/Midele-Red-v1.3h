@@ -82,6 +82,15 @@ GaryScript2:
 	ld a, $3
 .saveTrainerId
 	ld [wTrainerNo], a
+	CheckEvent EVENT_POST_GAME
+	jr z, .skip
+	ld a, [wTrainerNo]
+	inc a
+	inc a
+	inc a
+	; surely there is a better way
+	ld [wTrainerNo], a
+.skip
 	; NUEVO PARA ENTRENADORES NO SON POKEMON
     ld a, 1
 	ld [wIsTrainerBattle], a

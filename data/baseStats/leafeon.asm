@@ -15,7 +15,7 @@ dw LeafeonPicBack
 db TACKLE
 db TAIL_WHIP
 db QUICK_ATTACK
-db MEGA_DRAIN
+db RAZOR_LEAF
 db 0 ; growth rate
 ; learnset
 	tmlearn 3,6,8

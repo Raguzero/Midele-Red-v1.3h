@@ -15,7 +15,7 @@ dw GlaceonPicBack
 db TACKLE
 db TAIL_WHIP
 db QUICK_ATTACK
-db SWIFT
+db ICY_WIND
 db 0 ; growth rate
 ; learnset
 	tmlearn 6,8

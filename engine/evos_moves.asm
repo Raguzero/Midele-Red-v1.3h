@@ -101,6 +101,23 @@ Evolution_PartyMonLoop: ; loop over party mons
 	ld a, [wcf91] ; this is supposed to be the last item used, but it is also used to hold species numbers
 	cp b ; was the evolution item in this entry used?
 	jp nz, .nextEvoEntry1 ; if not, go to the next evolution entry
+
+;joenote - make it so a message is printed if the level requirement for an item evolution is not met
+	push hl
+	ld a, [wCurEnemyLVL]
+	push af
+	ld a, [hl] 	; level requirement
+	ld [wCurEnemyLVL], a
+	ld b, a
+	ld a, [wLoadedMonLevel]
+	cp b ; is the mon's level less than the evolution requirement?
+	jr nc, .skip_level_req_print
+	ld hl, NeededLevelText
+	call PrintText
+.skip_level_req_print
+	pop af
+	ld [wCurEnemyLVL], a
+	pop hl
 .checkLevel
 	ld a, [hli] ; level requirement
 	ld b, a
@@ -894,5 +911,12 @@ PrepareLevelUpMoveList:: ; I don't know how the fuck you're a single colon in sh
 	ld [wMoveListCounter], a ; number of moves in the list
 .debug
 	ret
+	
+;joenote - make it so a message is printed if the level requirement for an item evolution is not met
+NeededLevelText:
+	text "Level @"
+	TX_NUM wCurEnemyLVL, 1, 3
+	text " needed!"
+	prompt
 
 INCLUDE "data/evos_moves.asm"

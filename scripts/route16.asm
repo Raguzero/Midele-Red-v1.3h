@@ -243,6 +243,28 @@ Route16AfterBattleText6:
 	db "@"
 
 Route16Text7:
+	TX_ASM
+	ld b, POKE_FLUTE
+	call IsItemInBag
+	ld hl, Route16Snorlax2Text
+	jr z, .end
+	ld hl, Route16UsePokeFluteText
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a
+	ld hl, Route16Snorlax2Text
+	jr nz, .end
+	ld a, POKE_FLUTE
+	ld [wcf91], a
+	call UseItem
+	jr .end2
+.end
+	call PrintText
+.end2
+	jp TextScriptEnd
+
+Route16Snorlax2Text:
 	TX_FAR _Route16Text7
 	db "@"
 
@@ -260,4 +282,8 @@ Route16Text8:
 
 Route16Text9:
 	TX_FAR _Route16Text9
+	db "@"
+	
+Route16UsePokeFluteText:
+	TX_FAR _Route16UsePokeFluteText
 	db "@"

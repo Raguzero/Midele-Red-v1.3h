@@ -146,6 +146,28 @@ Route12TrainerHeader6:
 	db $ff
 
 Route12Text1:
+	TX_ASM
+	ld b, POKE_FLUTE
+	call IsItemInBag
+	ld hl, Route12Snorlax2Text
+	jr z, .end
+	ld hl, Route12UsePokeFluteText
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a
+	ld hl, Route12Snorlax2Text
+	jr nz, .end
+	ld a, POKE_FLUTE
+	ld [wcf91], a
+	call UseItem
+	jr .end2
+.end
+	call PrintText
+.end2
+	jp TextScriptEnd
+
+Route12Snorlax2Text:
 	TX_FAR _Route12Text1
 	db "@"
 
@@ -289,4 +311,8 @@ Route12Text11:
 
 Route12Text12:
 	TX_FAR _Route12Text12
+	db "@"
+	
+Route12UsePokeFluteText:
+	TX_FAR _Route12UsePokeFluteText
 	db "@"

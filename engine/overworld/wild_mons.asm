@@ -3,12 +3,15 @@ LoadWildData:
 ;	ld hl, WildDataPointers
 ;	ld a, [wCurMap]
   ld a, [wCurMap]
+  cp FUCHSIA_CITY
+  jr z, .glitchIfMicoloDefeated
   cp CINNABAR_ISLAND
   jr nz, .noGlitch
+.glitchIfMicoloDefeated
   CheckEventHL EVENT_OLDMANGLITCH 
   jr z, .noGlitch
   ; Si Micolo está derrotado, se evita el fix chapucero del old man glitch
-  ld a, FUCHSIA_CITY ; mapa random sin pokes salvajes
+  ld a, CELADON_CITY ; mapa random sin pokes salvajes
 .noGlitch
   ld hl, WildDataPointers
   ; NUEVO DESACTIVAR OLD MAN GLITCH

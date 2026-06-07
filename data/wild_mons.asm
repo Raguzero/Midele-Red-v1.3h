@@ -6,7 +6,7 @@ WildDataPointers:
 	dw NoMons      ; LAVENDER_TOWN
 	dw NoMons      ; VERMILION_CITY
 	dw NoMons      ; CELADON_CITY
-	dw NoMons      ; FUCHSIA_CITY
+	dw WaterMonsChapuzaCinnabar      ; FUCHSIA_CITY
 	dw WaterMonsChapuzaCinnabar     ; CINNABAR_ISLAND  ; ANTES NOMONS  ; NUEVO DESACTIVAR OLD MAN GLITCH
 	dw NoMons      ; INDIGO_PLATEAU
 	dw NoMons      ; SAFFRON_CITY

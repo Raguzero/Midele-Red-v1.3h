@@ -7,7 +7,7 @@ pokeblue_obj := audio_blue.o main_blue.o text_blue.o wram_blue.o
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
-.PHONY: all clean red blue compare tools
+.PHONY: all clean red blue compare tools bppsha1
 
 roms := pokered.gbc pokeblue.gbc
 
@@ -49,9 +49,14 @@ pokered_opt  = -jsv -k 01 -l 0x33 -m 0x13 -p 0 -r 03 -t "POKEMON RED"
 pokeblue_opt = -jsv -k 01 -l 0x33 -m 0x13 -p 0 -r 03 -t "POKEMON BLUE"
 
 %.gbc: $$(%_obj)
+	@sha1sum -c --quiet bppsha1.txt || echo "Los archivos anteriores no coinciden con los de la release de Midele Red"
 	rgblink -d -n $*.sym -l pokered.link -o $@ $^
 	rgbfix $($*_opt) $@
 	sort $*.sym -o $*.sym
+
+bppsha1.txt: bppsha1
+bppsha1:
+	sha1sum */*.*bpp */*/*.*bpp */*/*/*.*bpp > bppsha1.txt
 
 gfx/blue/intro_purin_1.2bpp: rgbgfx += -h
 gfx/blue/intro_purin_2.2bpp: rgbgfx += -h

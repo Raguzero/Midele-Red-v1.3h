@@ -260,7 +260,6 @@ PlaySFX::
 	;cp e
 	;jr c, .quit
 
-PlaySFX_play
 .play
 	ld a, [hROMBank]
 	push af

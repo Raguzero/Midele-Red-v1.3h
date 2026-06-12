@@ -284,7 +284,6 @@ PopAllRet:
 
 _LoadMusicByte::
 ; CurMusicByte = [a:de]
-GLOBAL LoadMusicByte
 
 	ld [hROMBank], a
 	ld [MBC1RomBank], a

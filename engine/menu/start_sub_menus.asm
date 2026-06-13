@@ -75,10 +75,10 @@ StartMenu_Pokemon:
 	jp z, .exitMenu ; if the player chose Cancel
 	dec b
 	cp b
-	jr z, .choseSwitch
+	jr z, .choseMoves
 	dec b
 	cp b
-	jp z, .choseMoves
+	jp z, .choseSwitch
 	dec b
 	cp b
 	jp z, .choseStats
@@ -87,6 +87,13 @@ StartMenu_Pokemon:
 	ld hl, wFieldMoves
 	add hl, bc
 	jp .choseOutOfBattleMove
+.choseMoves
+	call ClearSprites
+	xor a ; PLAYER_PARTY_DATA
+	ld [wMonDataLocation], a
+	predef MoveScreen
+	call ReloadMapData
+	jp StartMenu_Pokemon
 .choseSwitch
 	ld a, [wPartyCount]
 	cp 2 ; is there more than one pokemon in the party?
@@ -96,13 +103,6 @@ StartMenu_Pokemon:
 	ld [wPartyMenuTypeOrMessageID], a
 	call GoBackToPartyMenu
 	jp .checkIfPokemonChosen
-.choseMoves
-	call ClearSprites
-	xor a ; PLAYER_PARTY_DATA
-	ld [wMonDataLocation], a
-	predef MoveScreen
-	call ReloadMapData
-	jp StartMenu_Pokemon
 .choseStats
 	call ClearSprites
 	xor a ; PLAYER_PARTY_DATA

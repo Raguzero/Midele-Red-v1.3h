@@ -86,6 +86,7 @@ AbandonLearning:
 	jp nz, DontAbandonLearning
 	ld hl, DidNotLearnText
 	call PrintText
+	call LoadScreenTilesFromBuffer1
 	ld b, 0
 	ret
 

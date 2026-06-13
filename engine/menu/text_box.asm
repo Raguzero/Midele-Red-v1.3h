@@ -740,8 +740,8 @@ FieldMoveNames:
 
 PokemonMenuEntries:
 	db   "STATS"
-	next "MOVES"
 	next "SWITCH"
+	next "MOVES"
 	next "CANCEL@"
 
 GetMonFieldMoves:

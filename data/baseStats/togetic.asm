@@ -15,7 +15,7 @@ dw TogeticPicBack
 db PECK
 db GROWL
 db METRONOME
-db MIRROR_MOVE
+db STEEL_WING
 db 4 ; growth rate
 ; learnset
 	tmlearn 1,5,6,8

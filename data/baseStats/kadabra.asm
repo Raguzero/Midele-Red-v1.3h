@@ -14,7 +14,7 @@ dw KadabraPicBack
 ; attacks known at lvl 0
 db TELEPORT
 db CONFUSION
-db 0
+db KINESIS
 db 0
 db 3 ; growth rate
 ; learnset

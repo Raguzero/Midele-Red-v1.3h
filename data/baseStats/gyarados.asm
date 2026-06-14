@@ -15,7 +15,7 @@ dw GyaradosPicBack
 db TACKLE
 db LEER
 db BUBBLE
-db 0
+db BITE
 db 5 ; growth rate
 ; learnset
 	tmlearn 6,8

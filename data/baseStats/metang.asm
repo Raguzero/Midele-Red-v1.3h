@@ -15,7 +15,7 @@ dw MetangPicBack
 db TAKE_DOWN
 db HEADBUTT
 db CONFUSION
-db 0
+db METAL_CLAW
 db 5 ; growth rate
 ; learnset
 	tmlearn 6,8

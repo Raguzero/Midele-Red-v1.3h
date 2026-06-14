@@ -12,7 +12,7 @@ INCBIN "pic/bmon/probopass.pic",0,1 ; 77, sprite dimensions
 dw ProbopassPicFront
 dw ProbopassPicBack
 ; attacks known at lvl 0
-db TRI_ATTACK
+db IRON_HEAD
 db TACKLE
 db HARDEN
 db ROCK_THROW

@@ -15,7 +15,7 @@ dw KrokorokPicBack
 db TACKLE
 db LEER
 db RAGE
-db SAND_ATTACK
+db LOW_KICK
 db 3 ; growth rate
 ; learnset
 	tmlearn 1,5,6,8

@@ -15,7 +15,7 @@ dw SwampertPicBack
 db TACKLE
 db GROWL
 db WATER_GUN
-db BIDE
+db SUPERSONIC
 db 3 ; growth rate
 ; learnset
 	tmlearn 1,5,6,8

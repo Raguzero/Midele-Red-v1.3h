@@ -15,7 +15,7 @@ dw MagnezonePicBack
 db TACKLE
 db SONICBOOM
 db THUNDERSHOCK
-db 0
+db IRON_HEAD
 db 0 ; growth rate
 ; learnset
 	tmlearn 6

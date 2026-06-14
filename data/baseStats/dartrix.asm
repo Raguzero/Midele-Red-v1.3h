@@ -15,7 +15,7 @@ dw DartrixPicBack
 db TACKLE
 db GROWL
 db PECK
-db MEGA_DRAIN
+db 0
 db 3 ; growth rate
 ; learnset
 	tmlearn 3,6

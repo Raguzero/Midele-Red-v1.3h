@@ -227,9 +227,8 @@ Evolution_PartyMonLoop: ; loop over party mons
 	ld [wd11e], a
 	xor a
 	ld [wMonDataLocation], a
-.learnMoveEevee	
-	call EeveelutionForceLearnMove ; FIXED: Force eeveelutions to learn a move on evolution
 	call LearnMoveFromLevelUp
+	call LearnEvolutionMoves
 	pop hl
 	predef SetPartyMonTypes
 	ld a, [wIsInBattle]
@@ -338,6 +337,16 @@ Evolution_ReloadTilesetTilePatterns:
 	cp LINK_STATE_TRADING
 	ret z
 	jp ReloadTilesetTilePatterns
+	
+LearnEvolutionMoves:
+	ld a, [wCurEnemyLVL]
+	push af
+	ld a, EVOLUTION_MOVE ; 254
+	ld [wCurEnemyLVL], a
+	call LearnMoveFromLevelUp
+	pop af
+	ld [wCurEnemyLVL], a
+	ret
 
 LearnMoveFromLevelUp:
 	ld hl, EvosMovesPointerTable
@@ -367,6 +376,11 @@ LearnMoveFromLevelUp:
 	ld a, [hli] ; move ID
 	jr nz, .learnSetLoop
 	ld d, a ; ID of move to learn
+    push hl ; save hl before the call because the function modifies it
+    call .tryToLearn
+    pop hl ; restore hl to continue the loop
+    jr .learnSetLoop
+.tryToLearn
 	ld a, [wMonDataLocation]
 	and a
 	jr nz, .next
@@ -395,50 +409,6 @@ LearnMoveFromLevelUp:
 .done
 	ld a, [wcf91]
 	ld [wd11e], a
-	ret
-	
-; used to force the eeveelutions to learn a specific move on evolution so this move cannot be missed
-EeveelutionForceLearnMove:
-	push bc
-	ld a, [wd11e] ; species
-	cp FLAREON
-	ld b, EMBER
-	jr z, .forceLearnMove
-	cp JOLTEON
-	ld b, THUNDERSHOCK
-	jr z, .forceLearnMove
-	cp VAPOREON
-	ld b, WATER_GUN
-	jr z, .forceLearnMove
-	cp ESPEON
-	ld b, CONFUSION
-	jr z, .forceLearnMove
-	cp UMBREON
-	ld b, BITE
-	jr z, .forceLearnMove
-	cp LEAFEON
-	ld b, RAZOR_LEAF
-	jr z, .forceLearnMove
-	cp GLACEON
-	ld b, ICY_WIND
-	jr z, .forceLearnMove
-	jr .done
-.forceLearnMove
-	push af ; put species number on the stack
-	ld a, b
-	push hl	
-	push de
-	ld [wMoveNum], a
-	ld [wd11e], a
-	call GetMoveName
-	call CopyStringToCF4B
-	predef LearnMove
-	pop de
-	pop hl
-	pop af ; retrieve species number from the stack
-	ld [wd11e], a
-.done
-	pop bc
 	ret
 
 ; writes the moves a mon has at level [wCurEnemyLVL] to [de]

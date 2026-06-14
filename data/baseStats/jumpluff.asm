@@ -15,7 +15,7 @@ dw JumpluffPicBack
 db TACKLE
 db SPLASH
 db TAIL_WHIP
-db ABSORB
+db LEECH_SEED
 db 3 ; growth rate
 ; learnset
 	tmlearn 3,6

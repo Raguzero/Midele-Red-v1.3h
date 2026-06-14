@@ -13,7 +13,7 @@ dw ScizorPicFront
 dw ScizorPicBack
 ; attacks known at lvl 0
 db QUICK_ATTACK
-db 0
+db METAL_CLAW
 db 0
 db 0
 db 0 ; growth rate

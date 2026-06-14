@@ -12,8 +12,8 @@ INCBIN "pic/bmon/decidueye.pic",0,1 ; 77, sprite dimensions
 dw DecidueyePicFront
 dw DecidueyePicBack
 ; attacks known at lvl 0
-db TACKLE
-db GROWL
+db NIGHT_SHADE
+db CONFUSE_RAY
 db PECK
 db MEGA_DRAIN
 db 3 ; growth rate

@@ -12,10 +12,10 @@ INCBIN "pic/bmon/beedrill.pic",0,1 ; 77, sprite dimensions
 dw BeedrillPicFront
 dw BeedrillPicBack
 ; attacks known at lvl 0
-db FURY_ATTACK
 db POISON_STING
-db 0
-db 0
+db STRING_SHOT
+db FURY_ATTACK
+db PECK
 db 0 ; growth rate
 ; learnset
 	tmlearn 3,6

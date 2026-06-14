@@ -15,7 +15,7 @@ dw VibravaPicBack
 db QUICK_ATTACK
 db SAND_ATTACK
 db SONICBOOM
-db 0
+db DRAGONBREATH
 db 3 ; growth rate
 ; learnset
 	tmlearn 6,8

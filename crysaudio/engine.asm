@@ -226,7 +226,7 @@ UpdateChannels: ; e8125
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 
 .ChannelFnPtrs
 	dw .Channel1
@@ -1358,7 +1358,7 @@ ParseMusicCommand: ; e870f
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp hl
 ; e8720
 
 MusicCommands: ; e8720
@@ -1702,7 +1702,7 @@ MusicFB: ; e8817
 	ret
 ; e883e
 
-MusicEE; e883e
+MusicEE: ; e883e
 ; conditional jump
 ; checks a byte in ram corresponding to the current channel
 ; doesn't seem to be set by any commands

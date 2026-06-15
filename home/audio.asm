@@ -260,7 +260,6 @@ PlaySFX::
 	;cp e
 	;jr c, .quit
 
-PlaySFX_play
 .play
 	ld a, [hROMBank]
 	push af
@@ -285,7 +284,6 @@ PopAllRet:
 
 _LoadMusicByte::
 ; CurMusicByte = [a:de]
-GLOBAL LoadMusicByte
 
 	ld [hROMBank], a
 	ld [MBC1RomBank], a

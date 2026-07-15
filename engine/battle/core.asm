@@ -3177,9 +3177,9 @@ TypeText:
 	db "TYPE@"
 
 HackPowerText:
-	db "Pwr@"
+	db "POW@"
 HackAccuracyText:
-	db "Acc@"
+	db "ACC@"
 HackPPText:
 	db "PP@"
 

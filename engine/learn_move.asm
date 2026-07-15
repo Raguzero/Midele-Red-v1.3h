@@ -353,7 +353,7 @@ HMCantDeleteText:
 
 MoveInfoLabels:
 	db   "TYPE:"
-	feed "PWR:     ACC:    %"
+	feed "POW:     ACC:    %"
 	db "@"
 NullMoveInfoLabel:
 	db "---@"

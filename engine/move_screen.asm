@@ -138,7 +138,7 @@ MoveScreen:
 	
 MoveScreenInfoLabels:
 	db   "         PP:"
-	feed "PWR:     ACC:    %"
+	feed "POW:     ACC:    %"
 	db "@"
 
 NullMoveScreenInfoLabel:

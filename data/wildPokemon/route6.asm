@@ -1,32 +1,16 @@
 Route6Mons:
 	db $0F
-	;IF DEF(_RED)
-		db 18,FARFETCHD
-		db 16,PIDGEY
-		db 18,PSYDUCK
-		db 16,MANKEY
-		db 18,MEOWTH
-		db 17,ODDISH
-		db 17,BELLSPROUT
-		db 18,SWABLU
-		db 16,MANKEY
-		db 18,MANKEY
-
-	;ENDC
-	;IF DEF(_BLUE)
-	;	db 13,BELLSPROUT
-	;	db 13,PIDGEY
-	;	db 15,PSYDUCK
-	;	db 10,MEOWTH
-	;	db 12,MEOWTH
-	;	db 15,BELLSPROUT
-	;	db 16,BELLSPROUT
-	;	db 16,PIDGEY
-	;	db 14,MEOWTH
-	;	db 16,MEOWTH
-	;ENDC
+	db 18,FARFETCHD
+	db 16,PIDGEY
+	db 18,PSYDUCK
+	db 16,MANKEY
+	db 18,MEOWTH
+	db 17,ODDISH
+	db 17,BELLSPROUT
+	db 18,SWABLU
+	db 16,MANKEY
+	db 18,MANKEY
 	;db $00
-	
 	db $03
 	db 15,PSYDUCK
 	db 15,PSYDUCK

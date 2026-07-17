@@ -382,12 +382,12 @@ KnowsHMMove::
 	and a
 	ret
 
-HMMoveArray:
-	db CUT
-	db FLY
-	db SURF
-	db STRENGTH
-	db FLASH
+HMMoveArray:  ; NUEVOS COMENTADOS, PERMITE METER UN POKE EN LA GUARDERIA AUNQUE TENGA HMs
+	;db CUT
+	;db FLY
+	;db SURF
+	;db STRENGTH
+	;db FLASH
 	db -1
 
 DisplayDepositWithdrawMenu:
